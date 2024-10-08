@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>16 - Cuántos días</title>
+</head>
+<!--Crea una función que calcule y retorne cuántos días hay
+entre dos cadenas de texto que representen fechas.
+ - Una cadena de texto que representa una fecha tiene el formato "dd/MM/yyyy".
+ - La función recibirá dos String y retornará un Int.
+ - La diferencia en días será absoluta (no importa el orden de las fechas).
+ - Si una de las dos cadenas de texto no representa una fecha correcta
+ se lanzará una excepción.-->
+<body>
+    <script>
+        function diasEntreFechas(dia1,dia2) {
+            let regexFecha = /^\d{2}\/\d{2}\/\d{4}$/;
+
+            if (!regexFecha.test(dia1) || !regexFecha.test(dia2)) {
+                throw new Error("Las fechas deben tener el formato 'dd/MM/yyyy'.");                
+            }
+            console.log("Fechas válidas");
+
+            let partesDia1 = dia1.split('/');
+            let fechaFormatoValido = `${partesDia1[2]}-${partesDia1[1]}-${partesDia1[0]}`;  // "yyyy-MM-dd"
+            let fecha1 = Date.parse(fechaFormatoValido);
+            console.log(fecha1);
+            
+            let partesDia2 = dia2.split('/');
+            let fechaValida2 = `${partesDia2[2]}-${partesDia2[1]}-${partesDia2[0]}`;
+            let fecha2 = Date.parse(fechaValida2);
+            console.log(fecha2);
+
+            let diferencia = Math.abs(fecha2-fecha1);
+            let resultado = Math.round(diferencia / (1000*60*60*24));
+
+            return resultado;           
+        }
+
+        let dia1 = "11/06/2024";
+        let dia2 = "15/06/2024";
+        document.write(diasEntreFechas(dia1,dia2) + " días.");
+    </script>
+</body>
+</html>

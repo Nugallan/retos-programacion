@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>¿Es un número primo?</title>
+  </head>
+  <!--
+ * Escribe un programa que se encargue de comprobar si un número es o no primo.
+ * Hecho esto, imprime los números primos entre 1 y 100.
+-->
+  <body>
+    <script>
+      var num = prompt("Introduzca número para saber si es primo");
+      num = Number(num);
+      var esPrimo = true;
+      for (var i = 2; i < num; i++) {
+        if (num % i === 0) {
+          esPrimo = false;
+          break;
+        }
+      }
+      if (esPrimo && num > 1) {
+        document.write(num + " <b>es primo</b>.");
+      } else {
+        document.write(num + " no es primo.");
+      }
+      document.write("<br>Lista de números primos entre 1 y 100:<br>");
+      for (let i = 2; i <= 100; i++) {
+        let esPrimo = true;
+        for (let j = 2; j < i; j++) {
+          if (i % j === 0) {
+            esPrimo = false;
+            break;
+          }
+        }
+        if (esPrimo) {
+          document.write(i + "<br>");
+        }
+      }
+    </script>
+  </body>
+</html>

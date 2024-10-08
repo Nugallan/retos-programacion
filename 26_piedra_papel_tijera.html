@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>26 - Piedra, papel, tijera</title>
+</head>
+<body>
+<!--Crea un programa que calcule quien gana más partidas al
+piedra, papel, tijera.
+ - El resultado puede ser: "Player 1", "Player 2", "Tie" (empate)
+ - La función recibe un listado que contiene pares, representando cada jugada.
+ - El par puede contener combinaciones de "R" (piedra), "P" (papel) o "S" (tijera).
+ - Ejemplo. Entrada: [("R","S"), ("S","R"), ("P","S")]. Resultado: "Player 2".-->    
+    <script>
+        function ganaMas(jugada) {
+            let jugador1 = 0;
+            let jugador2 = 0;
+
+            for (let i = 0; i < jugada.length; i++) {
+                // Comparamos las jugadas de cada par
+                if (jugada[i][0] === "R" && jugada[i][1] === "S") {
+                    jugador1++;
+                } else if (jugada[i][0] === "S" && jugada[i][1] === "R") {
+                    jugador2++;
+                } else if (jugada[i][0] === "P" && jugada[i][1] === "R") {
+                    jugador1++;
+                } else if (jugada[i][0] === "R" && jugada[i][1] === "P") {
+                    jugador2++;
+                } else if (jugada[i][0] === "S" && jugada[i][1] === "P") {
+                    jugador1++;
+                } else if (jugada[i][0] === "P" && jugada[i][1] === "S") {
+                    jugador2++;
+                }
+            }
+
+            // Determinar quién gana
+            let resultado;
+            if (jugador1 === jugador2) {
+                resultado = "Tie";
+            } else if (jugador1 > jugador2) {
+                resultado = "Player 1";
+            } else {
+                resultado = "Player 2";
+            }
+
+            return resultado;
+        }
+
+        let jugada = [["R", "S"], ["S", "R"], ["P", "S"]];
+        document.write(ganaMas(jugada));
+    </script>
+</body>
+</html>

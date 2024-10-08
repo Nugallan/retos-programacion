@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expresiones equilibradas</title>
+</head>
+<body>
+    <script>
+        /*
+        Crea un programa que comprueba si los paréntesis, llaves y corchetes
+        de una expresión están equilibrados.
+        - Equilibrado significa que estos delimitadores se abren y cierran
+          en orden y de forma correcta.
+        - Paréntesis, llaves y corchetes son igual de prioritarios.
+          No hay uno más importante que otro.
+        - Expresión balanceada: { [ a * ( c + d ) ] - 5 }
+        - Expresión no balanceada: { a * ( c + d ) ] - 5 }
+        */
+        function estanEquilibrados(expresion) {
+            const pila = [];
+            const delimitadores = {
+                '(': ')',
+                '{': '}',
+                '[': ']'
+            };
+
+            for (let i = 0; i < expresion.length; i++) {
+                const caracter = expresion[i];
+
+                if (delimitadores[caracter]) {
+                    // Si es un delimitador de apertura, empújalo a la pila
+                    pila.push(caracter);
+                } else if (caracter === ')' || caracter === '}' || caracter === ']') {
+                    // Si es un delimitador de cierre, verifica si coincide con el de la cima de la pila
+                    const ultimo = pila.pop();
+                    if (delimitadores[ultimo] !== caracter) {
+                        return false;
+                    }
+                }
+            }
+
+            // Al final, la pila debe estar vacía
+            return pila.length === 0;
+        }
+
+        // Ejemplos de uso
+        const expresion1 = "{ [ a * ( c + d ) ] - 5 }";
+        const expresion2 = "{ a * ( c + d ) ] - 5 }";
+
+        console.log(`Expresión: "${expresion1}" está equilibrada: ${estanEquilibrados(expresion1)}`);
+        console.log(`Expresión: "${expresion2}" está equilibrada: ${estanEquilibrados(expresion2)}`);
+
+    </script>
+</body>
+</html>

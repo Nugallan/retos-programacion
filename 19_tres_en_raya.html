@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>19 - Tres en raya</title>
+  </head>
+  <!-- Crea una función que analice una matriz 3x3 compuesta por "X" y "O" y retorne lo siguiente:
+ * - "X" si han ganado las "X"
+ * - "O" si han ganado los "O"
+ * - "Empate" si ha habido un empate
+ * - "Nulo" si la proporción de "X", de "O", o de la matriz no es correcta.
+ *   O si han ganado los 2.
+ * Nota: La matriz puede no estar totalmente cubierta.
+ * Se podría representar con un vacío "", por ejemplo.*
+-->
+  <body>
+    <script>
+        function analizarMatriz(matriz) {
+          let resultado = "";
+          let conteoX = 0;
+          let conteoO = 0;
+          let ganadorX = false;
+          let ganadorO = false;
+          
+          // Contar la cantidad de "X" y "O"
+          for (let f = 0; f < matriz.length; f++) {
+            for (let c = 0; c < matriz[f].length; c++) {
+              if (matriz[f][c] === "X") conteoX++;
+              else if (matriz[f][c] === "O") conteoO++;
+            }
+          }
+      
+          // Verificar proporción de "X" y "O"
+          if (Math.abs(conteoX - conteoO) > 1) return "Nulo"; // Proporción incorrecta
+      
+          // Verificar líneas horizontales
+          for (let f = 0; f < matriz.length; f++) {
+            if (matriz[f][0] == matriz[f][1] && matriz[f][1] == matriz[f][2] && matriz[f][0] != "") {
+              if (matriz[f][0] === "X") ganadorX = true;
+              if (matriz[f][0] === "O") ganadorO = true;
+            }
+          }
+      
+          // Verificar líneas verticales
+          for (let c = 0; c < matriz[0].length; c++) {
+            if (matriz[0][c] == matriz[1][c] && matriz[1][c] == matriz[2][c] && matriz[0][c] != "") {
+              if (matriz[0][c] === "X") ganadorX = true;
+              if (matriz[0][c] === "O") ganadorO = true;
+            }
+          }
+      
+          // Verificar diagonales
+          if (matriz[0][0] == matriz[1][1] && matriz[1][1] == matriz[2][2] && matriz[0][0] != "") {
+            if (matriz[0][0] === "X") ganadorX = true;
+            if (matriz[0][0] === "O") ganadorO = true;
+          }
+          if (matriz[0][2] == matriz[1][1] && matriz[1][1] == matriz[2][0] && matriz[0][2] != "") {
+            if (matriz[0][2] === "X") ganadorX = true;
+            if (matriz[0][2] === "O") ganadorO = true;
+          }
+      
+          // Verificar si ambos han ganado
+          if (ganadorX && ganadorO) return "Nulo";
+      
+          // Retornar el ganador si lo hay
+          if (ganadorX) return "X";
+          if (ganadorO) return "O";
+      
+          // Verificar si hay empate (si el tablero está lleno y no hay ganador)
+          if (conteoX + conteoO === 9) return "Empate";
+      
+          // Si no hay ganador ni empate y quedan espacios vacíos
+          return "Nulo";
+        }
+      
+        var matriz = [
+          ["X", "O", "O"],
+          ["O", "X", "X"],
+          ["", "", "O"],
+        ];
+      
+        console.log(matriz);
+        let resultado = analizarMatriz(matriz);
+        console.log(resultado); // Output: "X"
+      </script>
+      
+  </body>
+</html>

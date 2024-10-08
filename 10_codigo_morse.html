@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10. Código Morse</title>
+</head>
+<body>
+    <script>
+    /*
+        Crea un programa que sea capaz de transformar texto natural
+        a código morse y viceversa.
+        - Debe detectar automáticamente de qué tipo se trata
+        y realizar la conversión.
+        - En morse se soporta raya "—", punto ".", un espacio " " entre
+        letras o símbolos y dos espacios entre palabras "  ".
+        - El alfabeto morse soportado será el mostrado en
+          https://es.wikipedia.org/wiki/Código_morse.
+    */
+
+        var textoToMorse = {
+            'a': '.-', 'b': '-...', 'c': '-.-.', '1': '.----', '2': '..---', '3': '...--',
+            'A': '.-', 'B': '-...', 'C': '-.-.'
+        };
+
+        var morseToTexto = {
+            '.-': 'a', '-...': 'b', '-.-.': 'c', '.----': '1', '..---': '2', '...--': '3',
+            '.-': 'A', '-...': 'B', '-.-.': 'C'
+        };
+
+        function esMorse(entrada) {
+            for (var i = 0; i < entrada.length; i++) {
+                var caracter = entrada[i];
+                if (caracter !== '.' && caracter !== '-' && caracter !== ' ') {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function textoAMorse(texto) {
+            var resul = "";
+            for (var i = 0; i < texto.length; i++) {
+                var caracter = texto[i];
+                if (textoToMorse[caracter] !== undefined) {
+                    resul += textoToMorse[caracter] + ' ';
+                }
+            }
+            // Eliminar el último espacio si existe
+            if (resul.endsWith(' ')) {
+                resul = resul.slice(0, -1);
+            }
+            return resul;
+        }
+
+        function morseATexto(morse) {
+            var palabras = morse.split('  ');
+            var resul = "";
+            for (var i = 0; i < palabras.length; i++) {
+                var codigos = palabras[i].split(' ');
+                for (var j = 0; j < codigos.length; j++) {
+                    var code = codigos[j];
+                    if (morseToTexto[code] !== undefined) {
+                        resul += morseToTexto[code];
+                    }
+                }
+                resul += ' ';
+            }
+            // Eliminar el último espacio si existe
+            if (resul.endsWith(' ')) {
+                resul = resul.slice(0, -1);
+            }
+            return resul;
+        }
+
+        var entrada = prompt("Introduzca un texto para transcribir en Morse o un código Morse para transcribir a texto:");
+        if (esMorse(entrada)) {
+            console.log("Morse a texto: " + morseATexto(entrada));
+        } else {
+            console.log("Texto a Morse: " + textoAMorse(entrada));
+        }
+
+    </script>
+
+</body>
+</html>

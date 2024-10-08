@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>18 - La carrera de obstáculos</title>
+</head>
+<!--Crea una función que evalúe si un/a atleta ha superado correctamente
+una carrera de obstáculos.
+ * - La función recibirá dos parámetros:
+ *   · Un array que sólo puede contener String con las palabras "run" o "jump"
+ *   · Un String que represente la pista y sólo puede
+     contener "_" (suelo) o "|" (valla).
+ * - La función imprimirá cómo ha finalizado la carrera:
+ *      - Si el/a atleta hace "run" en "_" (suelo) y "jump" en "|" (valla)
+ *        será correcto y no variará el símbolo de esa parte de la pista.
+ *      - Si hace "jump" en "_" (suelo), se variará la pista por "x".
+ *      - Si hace "run" en "|" (valla), se variará la pista por "/".
+ * - La función retornará un Boolean que indique si ha superado la carrera.
+ * Para ello tiene que realizar la opción correcta en cada tramo de la pista./-->
+<body>
+    <script>
+        function carreraDeObstaculos(acciones, pista) {
+            let superado = true;
+            let pistaFinal = "";
+
+            for (let i = 0; i < acciones.length; i++) {
+                let tramo = pista.charAt(i);  // El tramo de la pista en la posición i
+                let accion = acciones[i];     // La acción correspondiente
+
+                if (accion === "run" && tramo === "_") {
+                    pistaFinal += "_";  // Acción correcta, no se modifica
+                } else if (accion === "jump" && tramo === "|") {
+                    pistaFinal += "|";  // Acción correcta, no se modifica
+                } else if (accion === "jump" && tramo === "_") {
+                    pistaFinal += "x";  // Error: salto en suelo
+                    superado = false;
+                } else if (accion === "run" && tramo === "|") {
+                    pistaFinal += "/";  // Error: correr en valla
+                    superado = false;
+                }
+            }
+
+            document.write("Pista final: " + pistaFinal + "<br>");
+            return superado;
+        }
+
+        let acciones = ["run","jump","jump","run","jump","run","run","jump","run"];
+        let pista = "_|_|__|_";
+        
+        let resultado = carreraDeObstaculos(acciones, pista);
+        if (resultado == true) {
+            document.write("Carrera superada");            
+        } else {
+            document.write("Carrera no superada");
+        }
+    </script>
+</body>
+</html>

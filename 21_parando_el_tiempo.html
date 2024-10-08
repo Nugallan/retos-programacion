@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>21 - Parando el tiempo</title>
+  </head>
+  <body>
+    <!--Crea una función que sume 2 números y retorne su resultado
+pasados unos segundos.
+  - Recibirá por parámetros los 2 números a sumar y los segundos
+  que debe tardar en finalizar su ejecución.
+  - Si el lenguaje lo soporta, deberá retornar el resultado de
+  forma asíncrona, es decir, sin detener la ejecución del programa
+  principal.
+  Se podría ejecutar varias veces al mismo tiempo.-->
+  </body>
+  <script>
+    function sumarConRetardo(num1, num2, segundos) {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          const resultado = num1 + num2;
+          resolve(resultado);
+        }, segundos * 1000);
+      });
+    }
+
+    // Ejemplo de uso:
+    sumarConRetardo(3, 4, 3).then((resultado) => {
+      console.log(`Resultado: ${resultado}`); // Resultado: 7 después de 3 segundos
+    });
+
+    // Puedes ejecutar varias veces al mismo tiempo:
+    sumarConRetardo(5, 6, 4).then((resultado) => {
+      console.log(`Resultado: ${resultado}`); // Resultado: 11 después de 4 segundos
+    });
+
+    sumarConRetardo(1, 2, 2).then((resultado) => {
+      console.log(`Resultado: ${resultado}`); // Resultado: 3 después de 2 segundos
+    });
+  </script>
+</html>

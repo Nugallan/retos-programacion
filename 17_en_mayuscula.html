@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>17 - En mayúscula</title>
+</head>
+<!--Crea una función que reciba un String de cualquier tipo y se
+encargue de poner en mayúscula la primera letra de cada palabra.
+- No se pueden utilizar operaciones del lenguaje que lo resuelvan directamente.-->
+<body>
+    <script>
+        function enMayuscula(cadena) {
+            // Dividir la cadena en palabras separadas por espacios
+            let palabras = cadena.split(' ');
+            
+            // Capitalizar la primera letra de cada palabra
+            for (let i = 0; i < palabras.length; i++) {
+                palabras[i] = palabras[i].charAt(0).toUpperCase() + palabras[i].slice(1).toLowerCase();
+            }
+            
+            // Unir las palabras nuevamente en una cadena
+            return palabras.join(' ');
+        }
+    
+        let string = "prueba de mayúscula";
+        document.write(enMayuscula(string));
+    </script>
+    
+</body>
+</html>

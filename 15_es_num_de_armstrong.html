@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>14 - Es un número de Armstrong?</title>
+</head>
+<!--Escribe una función que calcule si un número dado es
+un número de Armstrong (o también llamado narcisista).
+Si no conoces qué es un número de Armstrong,
+debes buscar información al respecto.-->
+<body>
+    <script>
+        function numArmstrong(n) {
+            let numStr = n.toString();  // Convertir el número a una cadena
+            let numDigitos = numStr.length;
+            let calculo = 0;
+
+            for (let i = 0; i < numDigitos; i++) {
+                let base = parseInt(numStr[i]);  // Obtener cada dígito como número
+                calculo += Math.pow(base, numDigitos);
+            }
+
+            return calculo === n;
+        }
+
+        var numDado = 153;
+        document.write(numArmstrong(numDado));
+    </script>
+</body>
+</html>

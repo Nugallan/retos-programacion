@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>20 - Conversor tiempo</title>
+</head>
+<body>
+<!--Crea una función que reciba días, horas, minutos y segundos
+(como enteros) y retorne su resultado en milisegundos.-->
+<script>
+    function milisegundos(dias,horas,minutos,segundos) {
+        var resultado = (dias * 24 * 60 * 60 * 1000) + (horas * 60 * 60 * 1000)
+        + (minutos * 60 * 1000) + (segundos * 1000);
+        return resultado;
+    }
+
+    var dias = 3;
+    var horas = 2;
+    var minutos = 30;
+    var segundos = 10;
+
+    document.write(milisegundos(dias,horas,minutos,segundos));
+
+</script>
+</body>
+</html>

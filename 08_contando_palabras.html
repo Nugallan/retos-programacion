@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>#08 - Contando palabras</title>
+  </head>
+  <!--Crea un programa que cuente cuántas veces se repite cada palabra y
+que muestre el recuento final de todas ellas.
+ * - Los signos de puntuación no forman parte de la palabra.
+ * - Una palabra es la misma aunque aparezca en mayúsculas y minúsculas.
+ * - No se pueden utilizar funciones propias del lenguaje que lo
+ resuelvan automáticamente. -->
+  <body>
+    <script>
+      var texto = "Texto de prueba. Prueba de texto y otro texto.";
+      var repeticiones = {};
+      var textoConvertido = "";
+      for (let i = 0; i < texto.length; i++) {
+        var caracter = texto[i];
+        if (
+          (caracter >= "a" && caracter <= "z") ||
+          (caracter >= "A" && caracter <= "Z") ||
+          caracter == " "
+        ) {
+          textoConvertido += caracter;
+        } else {
+          textoConvertido += " ";
+        }
+      }
+      textoConvertido = textoConvertido.toLowerCase().split(" ");
+
+      for (let i = 0; i < textoConvertido.length; i++) {
+        var palabra = textoConvertido[i];
+
+        // Ignora palabras vacías (espacios en blanco)
+        if (palabra !== "") {
+          if (repeticiones[palabra]) {
+            repeticiones[palabra]++;
+          } else {
+            repeticiones[palabra] = 1;
+          }
+        }
+      }
+      // Ahora repeticiones contiene el recuento de cada palabra
+      for (var palabra in repeticiones) {
+        document.write('Palabra: \"' + palabra + '\", recuento: ' + repeticiones[palabra] + "<br>");
+      }
+    </script>
+  </body>
+</html>

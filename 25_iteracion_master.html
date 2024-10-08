@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>25 - Iteration master</title>
+</head>
+<body>
+<!--Quiero contar del 1 al 100 de uno en uno (imprimiendo
+cada uno).
+¿De cuántas maneras eres capaz de hacerlo?
+Crea el código para cada una de ellas.-->
+    <script>
+        document.write("Forma 1:<br>");
+        for (let i = 1; i <= 100; i++) {
+            document.write(i + ",");
+        }
+
+        document.write("<br>Forma 2:<br>");
+        let cuenta = 0;
+        while (cuenta < 100) {
+            cuenta++;
+            document.write(cuenta + ", ");
+        }
+
+        document.write("<br>Forma 3:<br>");
+        let cuenta2 = 0;
+        do {
+            cuenta2++;
+            document.write(cuenta2 + ", ");
+        } while (cuenta2 < 100);
+
+        document.write("<br>Forma 4 (usando recursión con función):<br>");
+        function contar(n) {
+            if (n > 100) return;
+            document.write(n);
+            contar(n + 1);
+        }
+        contar(1);
+
+        document.write("<br>Forma 5 (método 'Array.from' y 'forEach'):<br>");
+        document.write(Array.from({ length: 100 }, (_, i) => i + 1));
+        Array.from({ length: 100 }, (_, i) => i + 1).forEach(n => console.log(n));
+
+
+        document.write("<br>Forma 6: (usando 'map')<br>");
+        [...Array(100).keys()].map(n => document.write(n + 1));
+    </script>
+    
+</body>
+</html>

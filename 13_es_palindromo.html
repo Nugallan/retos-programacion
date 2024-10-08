@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>13. Es un palíndromo?</title>
+  </head>
+  <body>
+    <!--
+        * Escribe una función que reciba un texto y retorne verdadero o falso (Boolean)
+        * según sean o no palíndromos.
+        * Un Palíndromo es una palabra o expresión que es igual si se lee de izquierda
+        * a derecha que de derecha a izquierda.
+        * NO se tienen en cuenta los espacios, signos de puntuación y tildes.
+        * Ejemplo: Ana lleva al oso la avellana.
+    -->
+    <script>
+      function esPalindromo(ejemplo) {
+        var resultado = false;
+        for (let i = 0; i < ejemplo.length; i++) {
+          if (
+            ejemplo.charAt(ejemplo[i]) === ejemplo.charAt(ejemplo.length - 1)
+          ) {
+            resultado = true;
+            console.log(resultado);
+          } else {
+            resultado = false;
+            break;
+          }
+        }
+
+        return resultado;
+      }
+
+      var ejemplo = "somos";
+      document.write(esPalindromo(ejemplo));
+    </script>
+  </body>
+</html>

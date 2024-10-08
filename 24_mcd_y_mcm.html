@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>24 - Máximo común divisor y mínimo común múltiplo</title>
+  </head>
+  <body>
+    <!--Crea dos funciones, una que calcule el máximo común divisor (MCD) y otra
+ que calcule el mínimo común múltiplo (mcm) de dos números enteros.
+ - No se pueden utilizar operaciones del lenguaje que lo resuelvan directamente.-->
+  </body>
+  <script>
+    function mcd(num1, num2) {
+      let resultado = 1; // Inicializamos en 1 porque 1 siempre es divisor común
+      let numMenor = Math.min(num1, num2);
+
+      for (let i = 1; i <= numMenor; i++) {
+        if (num1 % i === 0 && num2 % i === 0) {
+          resultado = i;
+        }
+      }
+      document.write("El MCD es: " + resultado + "<br>");
+    }
+
+    function mcm(num1, num2) {
+      let mayor = Math.max(num1, num2); // Empezamos con el mayor de los dos números
+      let resultado = mayor;
+
+      // Buscamos el primer múltiplo que sea divisible por ambos números
+      while (resultado % num1 !== 0 || resultado % num2 !== 0) {
+        resultado++;
+      }
+
+      document.write("El MCM es: " + resultado + "<br>");
+    }
+
+    let num1 = 12;
+    let num2 = 18;
+
+    mcd(num1, num2);
+    mcm(num1, num2);
+  </script>
+</html>
